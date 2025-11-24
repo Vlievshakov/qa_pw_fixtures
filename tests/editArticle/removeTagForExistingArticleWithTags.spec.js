@@ -9,17 +9,17 @@ test.beforeEach(async ({ page, user, articleWithTwoTags }) => {
 
 test('Remove an article tag for the existing article with tag', async ({
   page,
-  createArticlePage,
+  editArticlePage,
   viewArticlePage,
   articleWithTwoTags: article,
 }) => {
   await viewArticlePage.clickEditArticleLink();
-  await createArticlePage.assertArticleTitleVisible();
+  await editArticlePage.assertArticleTitle();
   await page.reload();
   for (const tag of article.tags) {
-    await createArticlePage.removeTag(tag);
+    await editArticlePage.removeTag(tag);
   }
-  await createArticlePage.clickUpdateArticleButton();
+  await editArticlePage.clickUpdateArticleButton();
   await viewArticlePage.assertArticleTitleIsVisible(article.title);
   for (const tag of article.tags) {
     await viewArticlePage.assertArticleTagIsHidden(tag);

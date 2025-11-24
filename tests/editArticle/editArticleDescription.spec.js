@@ -9,16 +9,14 @@ test.beforeEach(async ({ page, user, articleWithoutTags }) => {
 
 test('Edit the article description for the existing article', async ({
   page,
-  createArticlePage,
+  editArticlePage,
   viewArticlePage,
 }) => {
   await viewArticlePage.clickEditArticleLink();
-  await createArticlePage.assertArticleTitleVisible();
+  await editArticlePage.assertArticleTitle();
   await page.reload();
-  await createArticlePage.fillDescriptionField('Description edited');
-  await createArticlePage.clickUpdateArticleButton();
+  await editArticlePage.fillDescriptionField('Description edited');
+  await editArticlePage.clickUpdateArticleButton();
   await viewArticlePage.clickEditArticleLink();
-  await createArticlePage.assertArticleDescriptionIsUpdated(
-    'Description edited',
-  );
+  await editArticlePage.assertArticleDescriptionIsUpdated('Description edited');
 });

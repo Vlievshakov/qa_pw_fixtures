@@ -10,13 +10,13 @@ test.beforeEach(async ({ page, user, articleWithoutTags }) => {
 
 test('Remove an article title for the existing article', async ({
   page,
-  createArticlePage,
+  editArticlePage,
   viewArticlePage,
 }) => {
   await viewArticlePage.clickEditArticleLink();
-  await createArticlePage.assertArticleTitleVisible();
+  await editArticlePage.assertArticleTitle();
   await page.reload();
-  await createArticlePage.fillTitleField('');
-  await createArticlePage.clickUpdateArticleButton();
-  await createArticlePage.assertErrorMessageContainsText(TITLE_CANNOT_BE_EMPTY);
+  await editArticlePage.fillTitleField('');
+  await editArticlePage.clickUpdateArticleButton();
+  await editArticlePage.assertErrorMessageContainsText(TITLE_CANNOT_BE_EMPTY);
 });

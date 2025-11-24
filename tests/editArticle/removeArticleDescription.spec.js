@@ -10,15 +10,15 @@ test.beforeEach(async ({ page, user, articleWithoutTags }) => {
 
 test('Remove an article description for the existing article', async ({
   page,
-  createArticlePage,
+  editArticlePage,
   viewArticlePage,
 }) => {
   await viewArticlePage.clickEditArticleLink();
-  await createArticlePage.assertArticleTitleVisible();
+  await editArticlePage.assertArticleTitle();
   await page.reload();
-  await createArticlePage.fillDescriptionField('');
-  await createArticlePage.clickUpdateArticleButton();
-  await createArticlePage.assertErrorMessageContainsText(
+  await editArticlePage.fillDescriptionField('');
+  await editArticlePage.clickUpdateArticleButton();
+  await editArticlePage.assertErrorMessageContainsText(
     DESCRIPTION_CANNOT_BE_EMPTY,
   );
 });

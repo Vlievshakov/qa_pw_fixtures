@@ -8,13 +8,13 @@ test.beforeEach(async ({ page, user, articleWithTwoTags }) => {
 
 test('Add the tag for the existing article with tags', async ({
   page,
-  createArticlePage,
+  editArticlePage,
   viewArticlePage,
 }) => {
   await viewArticlePage.clickEditArticleLink();
-  await createArticlePage.assertArticleTitleVisible();
+  await editArticlePage.assertArticleTitle();
   await page.reload();
-  await createArticlePage.fillArticleTag('tagone');
-  await createArticlePage.clickUpdateArticleButton();
+  await editArticlePage.fillArticleTag('tagone');
+  await editArticlePage.clickUpdateArticleButton();
   await viewArticlePage.assertArticleTagIsVisible('tagone');
 });

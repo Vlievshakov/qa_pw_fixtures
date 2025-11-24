@@ -9,13 +9,13 @@ test.beforeEach(async ({ page, user, articleWithoutTags }) => {
 
 test('Edit the article text for the existing article', async ({
   page,
-  createArticlePage,
+  editArticlePage,
   viewArticlePage,
 }) => {
   await viewArticlePage.clickEditArticleLink();
-  await createArticlePage.assertArticleTitleVisible();
+  await editArticlePage.assertArticleTitle();
   await page.reload();
-  await createArticlePage.fillTextField('Text edited');
-  await createArticlePage.clickUpdateArticleButton();
+  await editArticlePage.fillTextField('Text edited');
+  await editArticlePage.clickUpdateArticleButton();
   await viewArticlePage.assertArticleTextIsVisible('Text edited');
 });

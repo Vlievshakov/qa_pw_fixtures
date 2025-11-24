@@ -9,13 +9,13 @@ test.beforeEach(async ({ page, user, articleWithoutTags }) => {
 
 test('Add the tag for the existing article without tags', async ({
   page,
-  createArticlePage,
   viewArticlePage,
+  editArticlePage,
 }) => {
   await viewArticlePage.clickEditArticleLink();
-  await createArticlePage.assertArticleTitleVisible();
+  await editArticlePage.assertArticleTitle();
   await page.reload();
-  await createArticlePage.fillArticleTag('tagone');
-  await createArticlePage.clickUpdateArticleButton();
+  await editArticlePage.fillArticleTag('tagone');
+  await editArticlePage.clickUpdateArticleButton();
   await viewArticlePage.assertArticleTagIsVisible('tagone');
 });
